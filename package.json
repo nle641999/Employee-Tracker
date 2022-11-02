@@ -1,0 +1,25 @@
+{
+  "name": "employee-tracker",
+  "version": "1.0.0",
+  "description": "An application that runs in the CLT that will allow the user to build a table containing employee names and roles",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nle641999/Employee-Tracker.git"
+  },
+  "keywords": [],
+  "author": "Nicholas Le",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nle641999/Employee-Tracker/issues"
+  },
+  "homepage": "https://github.com/nle641999/Employee-Tracker#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^9.1.4",
+    "mysql2": "^2.3.3"
+  }
+}
