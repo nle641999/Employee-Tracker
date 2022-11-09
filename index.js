@@ -131,14 +131,13 @@ const roleView = async () => {
     };
 }
 
-// Option to ADD A NEW EMPLOYEE
+// Option to ADD NEW EMPLOYEES
 const employeeAdd = async () => {
+    console.log('Employee Add');
     try {
-        console.log('Employee Add');
+        let roles = await connection.query("SELECT * FROM role");
 
-        let roles = connection.query("SELECT * FROM role");
-
-        let managers = connection.query("SELECT * FROM employee");
+        let managers = await connection.query("SELECT * FROM employee");
 
         let answer = await inquirer.prompt([
             {
@@ -191,7 +190,7 @@ const employeeAdd = async () => {
     };
 }
 
-// Option for ADDING A NEW DEPARTMENT
+// Option to ADD A NEW DEPARTMENT
 const departmentAdd = async () => {
     try {
         console.log('Department Add');
@@ -204,7 +203,7 @@ const departmentAdd = async () => {
             }
         ]);
 
-        let result = connection.query("INSERT INTO department SET ?", {
+        let result = await connection.query("INSERT INTO department SET ?", {
             department_name: answer.deptName
         });
 
@@ -217,12 +216,12 @@ const departmentAdd = async () => {
     };
 }
 
-// Option for ADDING A NEW ROLE
+// Option to ADD A NEW ROLE
 const roleAdd = async () => {
     try {
         console.log('Role Add');
 
-        let departments = connection.query("SELECT * FROM department")
+        let departments = await connection.query("SELECT * FROM department")
 
         let answer = await inquirer.prompt([
             {
@@ -247,14 +246,14 @@ const roleAdd = async () => {
                 message: 'What department ID is this role associated with?',
             }
         ]);
-
+        
         let chosenDepartment;
         for (i = 0; i < departments.length; i++) {
-            if (departments[i].department_id === answer.choice) {
+            if(departments[i].department_id === answer.choice) {
                 chosenDepartment = departments[i];
             };
         }
-        let result = connection.query("INSERT INTO role SET ?", {
+        let result = await connection.query("INSERT INTO role SET ?", {
             title: answer.title,
             salary: answer.salary,
             department_id: answer.departmentId
@@ -269,12 +268,12 @@ const roleAdd = async () => {
     };
 }
 
-// Option for UPDATING EMPLOYEE ROLE
+// Option to UPDATE ROLE FOR EMPLOYEE
 const employeeUpdate = async () => {
     try {
         console.log('Employee Update');
-
-        let employees = connection.query("SELECT * FROM employee");
+        
+        let employees = await connection.query("SELECT * FROM employee");
 
         let employeeSelection = await inquirer.prompt([
             {
@@ -316,5 +315,4 @@ const employeeUpdate = async () => {
         initialAction();
     };
 }
-
 initialAction()
