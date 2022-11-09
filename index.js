@@ -1,6 +1,7 @@
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
 const util = require('util');
+const consoleTable = require('console.table');
 require('dotenv').config();
 
 
@@ -31,9 +32,9 @@ const initialAction = async () => {
                 'View Employees',
                 'View Departments',
                 'View Roles',
-                'Add New Employees',
-                'Add New Departments',
-                'Add New Roles',
+                'Add Employees',
+                'Add Departments',
+                'Add Roles',
                 'Update Employee Role',
                 'Exit'
             ]
@@ -170,7 +171,7 @@ const employeeAdd = async () => {
                         value: manager.id
                     }
                 }),
-                message: "What is this Employee's Manager's Id?"
+                message: "What is this Employee's Manager's ID?"
             }
         ])
 
